@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane prefHeight="525.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <TabPane layoutX="-3.0" layoutY="-2.0" prefHeight="525.0" prefWidth="797.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="CSP consistant">
+               <content>
+                  <Pane prefHeight="441.0" prefWidth="720.0">
+                     <children>
+                        <Label layoutX="20.0" layoutY="7.0" prefHeight="27.0" prefWidth="163.0" text="Notre CSP:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextArea layoutX="20.0" layoutY="33.0" prefHeight="108.0" prefWidth="179.0" text="X={X0,X1,X2}&#10;D(X0)=D(X1)=D(X2)={1,2,3,4,5}&#10;C={c1 : X0&lt;X1 ;&#10;      c2 : X0&lt;X2 ;&#10;      c3 : X1&lt;X2}" />
+                        <Label layoutX="438.0" layoutY="250.0" prefHeight="25.0" prefWidth="62.0" text="Resultat:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="20.0" layoutY="206.0" mnemonicParsing="false" onAction="#Lancer_Consistant" prefHeight="27.0" prefWidth="89.0" text="Lancer" />
+                        <Label layoutX="259.0" layoutY="8.0" prefHeight="25.0" prefWidth="76.0" text="Mp initiale:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="479.0" layoutY="8.0" prefHeight="25.0" prefWidth="76.0" text="Mp finale:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="Resultat1" layoutX="500.0" layoutY="250.0" prefHeight="160.0" prefWidth="153.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Variable" />
+                              <TableColumn prefWidth="75.0" text="Valeur" />
+                           </columns>
+                        </TableView>
+                        <TableView fx:id="tabMpInit" layoutX="259.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0" />
+                        <TableView fx:id="tabMpFinale" layoutX="479.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0" />
+                        <RadioButton layoutX="21.0" layoutY="151.0" mnemonicParsing="false" selected="true" text="Selection aléatoire des variables">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="group" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton layoutX="21.0" layoutY="180.0" mnemonicParsing="false" text="Selection avec metaheuristique" toggleGroup="$group" />
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab text="CSP aléatoire">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <LineChart fx:id="linear_chart" animated="false" layoutX="-8.0" layoutY="108.0" prefHeight="333.0" prefWidth="440.0">
+                          <xAxis>
+                            <CategoryAxis label="Nombre de variable" side="BOTTOM" startMargin="0.0" tickLabelGap="10.0" tickLength="4.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Temps" side="LEFT" upperBound="1000.0" />
+                          </yAxis>
+                        </LineChart>
+                        <TableView fx:id="tabResAlea" layoutX="443.0" layoutY="137.0" prefHeight="306.0" prefWidth="153.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Variable" />
+                            <TableColumn prefWidth="75.0" text="Valeur" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="tabResMeta" layoutX="621.0" layoutY="137.0" prefHeight="304.0" prefWidth="155.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Variable" />
+                            <TableColumn prefWidth="75.0" text="Valeur" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="47.0" layoutY="27.0" prefHeight="24.0" prefWidth="118.0" />
+                        <Label layoutX="47.0" layoutY="20.0" prefHeight="38.0" prefWidth="463.0" text="Comparaison des deux  methode de selection de variable sur un CSP aléatoire:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="47.0" layoutY="62.0" mnemonicParsing="false" onAction="#Lancer_Alea" prefHeight="30.0" prefWidth="78.0" text="Lancer" />
+                        <Label layoutX="443.0" layoutY="107.0" prefHeight="25.0" prefWidth="205.0" text="Selection aléatoire:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="610.0" layoutY="107.0" prefHeight="25.0" prefWidth="205.0" text="Selection avec metaheuristique:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="textimeAlea" layoutX="459.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="121.13671875" />
+                        <Text fx:id="textimeMeta" layoutX="637.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="114.13671875" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="CSP choisi">
+               <content>
+                  <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <LineChart fx:id="linear_chart1" animated="false" layoutX="3.0" layoutY="193.0" prefHeight="277.0" prefWidth="440.0">
+                           <xAxis>
+                              <CategoryAxis label="Nombre de variable" side="BOTTOM" startMargin="0.0" tickLabelGap="10.0" tickLength="4.0" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Temps" side="LEFT" upperBound="1000.0" />
+                           </yAxis>
+                        </LineChart>
+                        <TableView fx:id="tabResAlea1" layoutX="443.0" layoutY="216.0" prefHeight="240.0" prefWidth="153.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Variable" />
+                              <TableColumn prefWidth="75.0" text="Valeur" />
+                           </columns>
+                        </TableView>
+                        <TableView fx:id="tabResMeta1" layoutX="618.0" layoutY="214.0" prefHeight="241.0" prefWidth="152.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Variable" />
+                              <TableColumn prefWidth="75.0" text="Valeur" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="443.0" layoutY="32.0" prefHeight="21.0" prefWidth="182.0" text="Les conraintes:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="27.0" layoutY="151.0" mnemonicParsing="false" onAction="#Lancer_Choisi" prefHeight="30.0" prefWidth="78.0" text="Lancer" />
+                        <Label layoutX="443.0" layoutY="192.0" prefHeight="25.0" prefWidth="205.0" text="Selection aléatoire:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="618.0" layoutY="192.0" prefHeight="25.0" prefWidth="205.0" text="Selection avec metaheuristique:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="textimeAlea1" layoutX="459.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="121.13671875" />
+                        <Text fx:id="textimeMeta1" layoutX="637.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="114.13671875" />
+                        <Label layoutX="27.0" layoutY="113.0" prefHeight="38.0" prefWidth="349.0" text="Comparaison des deux  methodes de selection de variable :">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="32.0" prefHeight="21.0" prefWidth="249.0" text="Selectionnez le fichier contenant votre CSP:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="24.0" layoutY="61.0" mnemonicParsing="false" onAction="#Selection_Cont" text="Selectionner:" />
+                        <TextArea fx:id="AfficheCont" layoutX="450.0" layoutY="61.0" prefHeight="127.0" prefWidth="191.0" text="&#10;" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</Pane>
